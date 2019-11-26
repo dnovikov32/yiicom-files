@@ -1,0 +1,9 @@
+.yc-file {
+  -webkit-transition: all 1s;
+  transition: all 1s; }
+
+.yc-file__img {
+  max-height: 100px; }
+
+.yc-file__handle {
+  cursor: pointer; }

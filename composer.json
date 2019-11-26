@@ -1,0 +1,12 @@
+{
+  "name": "yiicom/yiicom-files",
+  "description": "Yiicom files module",
+  "keywords": ["yii2", "yiicom", "commerce", "files"],
+  "type": "yii2-extension",
+  "require": {
+    "yiicom/yiicom": "dev-master"
+  },
+  "autoload": {
+    "psr-4": { "yiicom\\files\\": "src" }
+  }
+}
