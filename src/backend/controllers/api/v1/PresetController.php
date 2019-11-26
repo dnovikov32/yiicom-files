@@ -68,7 +68,7 @@ class PresetController extends ApiController
 
             return $model;
         } catch (\Throwable $e) {
-            throw new ServerErrorHttpException(Yii::t("commerce", "Server error: ") . $e->getMessage());
+            throw new ServerErrorHttpException(Yii::t("yiicom", "Server error: ") . $e->getMessage());
         }
     }
 
@@ -88,7 +88,7 @@ class PresetController extends ApiController
             return $model;
 
         } catch (\Throwable $e) {
-            throw new ServerErrorHttpException(Yii::t("commerce", "Server error: ") . $e->getMessage());
+            throw new ServerErrorHttpException(Yii::t("yiicom", "Server error: ") . $e->getMessage());
         }
     }
 
@@ -107,10 +107,10 @@ class PresetController extends ApiController
                 return ['status' => 'success'];
             }
 
-            throw new ServerErrorHttpException(Yii::t("commerce", "Can't delete model"));
+            throw new ServerErrorHttpException(Yii::t("yiicom", "Can't delete model"));
 
         } catch (\Throwable $e) {
-            throw new ServerErrorHttpException(Yii::t("commerce", "Server error: ") . $e->getMessage());
+            throw new ServerErrorHttpException(Yii::t("yiicom", "Server error: ") . $e->getMessage());
         }
     }
 }

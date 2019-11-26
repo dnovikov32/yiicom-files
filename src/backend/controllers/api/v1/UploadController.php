@@ -15,7 +15,7 @@ class UploadController extends ApiController
         $model->loadWithFile();
 
         if (false === $model->save() && false === $model->hasErrors()) {
-            throw new ServerErrorHttpException(Yii::t("commerce", "Can't save model"));
+            throw new ServerErrorHttpException(Yii::t("yiicom", "Can't save model"));
         }
 
         return $model;
