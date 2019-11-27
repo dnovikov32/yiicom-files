@@ -13,6 +13,7 @@
 ],
 
 ```
+
 **app/console/config/main.php**
 ```php
 // Enable module commands
@@ -36,4 +37,43 @@
 Run migrations to create tables **files** and **files_presets**
 ```bash
 php yii migrate
+```
+
+
+### Vue application setup
+
+Add files store module to vue application general store
+
+**app/backend/assets/src/store/store.js**
+```js
+import filesPresets from '../../../../vendor/yiicom/yiicom-files/src/backend/assets/src/store/presets.js'
+
+export default new Vuex.Store({
+    modules: {
+        'files-presets': filesPresets
+    }
+
+});
+```
+
+Add files module routes to vue router
+
+**app/backend/assets/src/index.js**
+```js
+import filesRoutes from '../../../vendor/yiicom/yiicom-files/src/backend/assets/src/routes/files.js';
+
+const router = new VueRouter({
+    mode: 'hash',
+    linkActiveClass: 'active',
+    routes: [
+        ... filesRoutes
+    ],
+});
+```
+
+Add extra styles
+
+**app/backend/assets/src/sass/main.scss**
+```scss
+@import '../../../../vendor/yiicom/yiicom-files/src/backend/assets/src/sass/files';
 ```
