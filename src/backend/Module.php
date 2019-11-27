@@ -12,10 +12,15 @@ class Module extends \yiicom\files\common\Module
      */
     public function settings()
     {
-        $settings['presets'] = [];
-        $settings['presets']['default'] = Preset::findOne(['isDefault' => true]);
-        $settings['presets']['actions'] = (new Preset)->actionsList();
-
+        $settings = [
+            'files' => [
+                'presets' => [
+                    'default' => Preset::findOne(['isDefault' => true]),
+                    'actions' => (new Preset)->actionsList(),
+                ],
+            ]
+        ];
+        
         return $settings;
     }
 }
