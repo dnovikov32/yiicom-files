@@ -143,7 +143,7 @@
                 }
             },
             settings () {
-                return this.$store.getters['settings'];
+                return this.$store.getters['commerce/settings'];
             }
         },
 
@@ -157,7 +157,7 @@
 
             src (file) {
                 if (file.modelId) {
-                    return `/storage/${file.storageDirName}/${this.settings.presets.default.name}/${file.name}`;
+                    return `/storage/${file.storageDirName}/${this.settings.files.presets.default.name}/${file.name}`;
                 }
 
                 return `/temp/${file.name}`;

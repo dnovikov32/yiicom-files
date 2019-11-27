@@ -2,7 +2,7 @@
 
     <div>
 
-        <yc-admin-buttons :model="model"></yc-admin-buttons>
+        <yc-admin-buttons></yc-admin-buttons>
 
         <div v-html="grid"></div>
 
@@ -15,18 +15,18 @@
 
         computed: {
             grid () {
-                return this.$store.getters['presets/grid'];
+                return this.$store.getters['files-presets/grid'];
             }
         },
 
         watch: {
             '$route': function () {
-                this.$store.dispatch('presets/all', this.$route.query);
+                this.$store.dispatch('files-presets/all', this.$route.query);
             }
         },
 
         created () {
-            this.$store.dispatch('presets/all');
+            this.$store.dispatch('files-presets/all');
         }
 
     }

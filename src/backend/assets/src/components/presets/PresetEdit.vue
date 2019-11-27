@@ -138,32 +138,32 @@
 
         computed: {
             isDev: function () {
-                return this.$store.getters['isDev'];
+                return this.$store.getters['commerce/isDev'];
             },
             isLoading: function () {
-                return this.$store.getters['isLoading'];
+                return this.$store.getters['commerce/isLoading'];
             },
             hasError: function () {
-                return this.$store.getters['hasError'];
+                return this.$store.getters['commerce/hasError'];
             },
             model: function () {
-                return this.$store.getters['presets/model'];
+                return this.$store.getters['files-presets/model'];
             },
             settings () {
-                return this.$store.getters['settings'];
+                return this.$store.getters['commerce/settings'];
             },
             actions () {
-                return _.isEmpty(this.settings) ? [] : this.settings.presets.actions;
+                return _.isEmpty(this.settings) ? [] : this.settings.files.presets.actions;
             }
         },
 
         created () {
-            this.$store.dispatch('presets/find', this.$route.query.id);
+            this.$store.dispatch('files-presets/find', this.$route.query.id);
         },
 
         watch: {
             '$route': function () {
-                this.$store.dispatch('presets/find', this.$route.query.id);
+                this.$store.dispatch('files-presets/find', this.$route.query.id);
             }
         },
 
@@ -173,7 +173,7 @@
 
                 let isNewRecord = (this.model.id === null);
 
-                this.$store.dispatch('presets/save', this.model).then(() => {
+                this.$store.dispatch('files-presets/save', this.model).then(() => {
                     if (this.hasError) {
                         return false;
                     }
@@ -188,9 +188,9 @@
             },
 
             destroy () {
-                this.$store.dispatch('presets/delete', this.model.id).then(() => {
+                this.$store.dispatch('files-presets/delete', this.model.id).then(() => {
                     this.$notify({type: 'success', text: 'Пресет удален'});
-                    this.$store.dispatch('settings');
+                    this.$store.dispatch('commerce/fetchSettings');
                     this.$router.push({ path: '/files/preset/index' });
                 });
             }

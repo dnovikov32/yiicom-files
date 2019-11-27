@@ -1,16 +1,12 @@
-import Vue from 'vue';
-import presetStore from './store/presets.js';
-import PresetsIndex from './components/presets/PresetsIndex.vue';
-import PresetEdit from './components/presets/PresetEdit.vue';
-import PresetsDelete from './components/presets/PresetsDelete.vue';
-
-window.App.$store.registerModule('presets', presetStore);
+import PresetIndex from '../components/presets/PresetIndex.vue';
+import PresetEdit from '../components/presets/PresetEdit.vue';
+import PresetDelete from '../components/presets/PresetDelete.vue';
 
 const routes = [
     {
         path: '/files/preset/index',
         name: 'files.preset.index',
-        component: PresetsIndex,
+        component: PresetIndex,
         meta: {
             auth: true,
             breadcrumbs: [
@@ -45,11 +41,11 @@ const routes = [
     {
         path: '/files/preset/delete',
         name: 'files.preset.delete',
-        component: PresetsDelete,
+        component: PresetDelete,
         meta: {
             auth: true
         }
     }
 ];
 
-window.App.$router.addRoutes(routes);
+export default routes;
