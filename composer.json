@@ -4,7 +4,8 @@
   "keywords": ["yii2", "yiicom", "commerce", "files"],
   "type": "yii2-extension",
   "require": {
-    "yiicom/yiicom": "dev-master"
+    "yiicom/yiicom": "dev-master",
+    "yiisoft/yii2-imagine": "^2.2.0"
   },
   "autoload": {
     "psr-4": { "yiicom\\files\\": "src" }
