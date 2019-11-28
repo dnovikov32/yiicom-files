@@ -59,7 +59,7 @@ class PresetController extends ApiController
     {
         try {
             /* @var Preset $model */
-            $model = $this->findOrNewModel(Preset::class, $id, true);
+            $model = $this->findOrNewModel(Preset::class, $id);
 
             if ($model->isNewRecord) {
                 $model->quality = 100;
@@ -77,7 +77,7 @@ class PresetController extends ApiController
         try {
             /* @var Preset $model */
             $id = Yii::$app->request->post('id');
-            $model = $this->findOrNewModel(Preset::class, $id, true);
+            $model = $this->findOrNewModel(Preset::class, $id);
 
             if ($model->load(Yii::$app->request->post(), '') && $model->validate()) {
                 if (!$model->save(false)) {
