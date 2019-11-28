@@ -7,8 +7,7 @@ use yiicom\files\common\models\Preset;
 class Module extends \yiicom\files\common\Module
 {
     /**
-     * Return module settings for backend vue application
-     * @return array
+     * @inheritDoc
      */
     public function settings()
     {
@@ -22,5 +21,24 @@ class Module extends \yiicom\files\common\Module
         ];
         
         return $settings;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function adminMenu()
+    {
+        return [
+            'label' => 'Файлы',
+            'url' => '/files/preset/index',
+            'icon' => 'fa fa-image',
+            'items' => [
+                [
+                    'label' => 'Пресеты',
+                    'url' => '/files/preset/index',
+                    'icon' => 'fa fa-crop-alt',
+                ]
+            ]
+        ];
     }
 }
