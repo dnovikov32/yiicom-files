@@ -99,7 +99,7 @@ class FilesBehavior extends Behavior
             $files[$index] = $model;
 		}
 
-        // Reindex the array with a zero key, to remove keys from JSON result
+        // // Reindexes the array with a 0 key to remove keys from JSON result
         $owner->{$this->attribute} = array_values($files);
 	}
 

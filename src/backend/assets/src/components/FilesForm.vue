@@ -180,7 +180,7 @@
                     // Upload error
                     if (newFile.error !== oldFile.error) {
                         this.isLoading = false;
-                        this.$store.dispatch('failing', newFile.response);
+                        this.$store.dispatch('commerce/failing', newFile.response);
                     }
 
                     // Uploaded successfully
