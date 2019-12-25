@@ -34,6 +34,13 @@
                 </span>
             </file-upload>
 
+            <b-button class="float-right mb-2 "
+                  variant="danger"
+                  @click="onRemovePresets"
+            >
+                Удалить пресеты
+            </b-button>
+
             <div v-if="files.length" class="yc-files">
 
                 <table class="table table-striped">
@@ -64,7 +71,7 @@
                             </td>
 
                             <td class="align-middle">
-                                <img class="yc-file__img" :src="src(file)" />
+                                <img class="yc-file__img" :src="'/' + file.url" />
                             </td>
 
                             <td>
@@ -155,12 +162,18 @@
 
         methods: {
 
-            src (file) {
-                if (file.modelId) {
-                    return `/storage/${file.storageDirName}/${this.settings.files.presets.default.name}/${file.name}`;
+            onRemovePresets (event) {
+                if (! confirm('Удалить все пресеты?')) {
+                    return false;
                 }
 
-                return `/temp/${file.name}`;
+                event.target.disabled = true;
+
+                let ids = _.map(this.models, 'id');
+
+                this.$store.dispatch('files-presets/deletePresetFiles', ids).then(() => {
+                    event.target.disabled = false;
+                });
             },
 
             inputFile (newFile, oldFile) {

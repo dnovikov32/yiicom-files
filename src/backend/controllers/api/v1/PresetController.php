@@ -7,6 +7,7 @@ use yii\web\ServerErrorHttpException;
 use yiicom\backend\base\ApiController;
 use yiicom\common\traits\ModelTrait;
 use yiicom\files\common\models\Preset;
+use yiicom\files\common\models\File;
 use yiicom\files\backend\models\PresetSearch;
 
 class PresetController extends ApiController
@@ -106,6 +107,27 @@ class PresetController extends ApiController
             if ($model->delete()) {
                 return ['status' => 'success'];
             }
+
+            throw new ServerErrorHttpException(Yii::t("yiicom", "Can't delete model"));
+
+        } catch (\Throwable $e) {
+            throw new ServerErrorHttpException(Yii::t("yiicom", "Server error: ") . $e->getMessage());
+        }
+    }
+
+    public function actionDeletePresetFiles()
+    {
+        try {
+            /** @var File[] $files */
+
+            $ids = Yii::$app->request->post('ids');
+            $files = File::find()->where(['IN', 'id', $ids])->all();
+
+            foreach ($files as $file) {
+                $file->fileManager->removePresets();
+            }
+
+            return ['status' => 'success'];
 
             throw new ServerErrorHttpException(Yii::t("yiicom", "Can't delete model"));
 

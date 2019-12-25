@@ -26,6 +26,9 @@ export default {
         },
         ['DELETE_MODEL_SUCCESS'] (state, data) {
             state.model = {};
+        },
+        ['DELETE_PRESET_FILES_SUCCESS'] (state, data) {
+
         }
     },
 
@@ -58,6 +61,14 @@ export default {
             return Vue.axios.post('/files/api/v1/preset/delete', { id: id })
                 .then(
                     response => commit('DELETE_MODEL_SUCCESS', response.data),
+                    error => {}
+                )
+        },
+
+        deletePresetFiles ({state, commit, rootState}, ids) {
+            return Vue.axios.post('/files/api/v1/preset/delete-preset-files', { ids: ids })
+                .then(
+                    response => commit('DELETE_PRESET_FILES_SUCCESS', response.data),
                     error => {}
                 )
         }

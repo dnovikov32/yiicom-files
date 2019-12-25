@@ -150,7 +150,11 @@ class File extends ActiveRecord implements ModelStatus
             'position',
             'alt',
             'title',
-            'storageDirName',
+            'url' => function (File $model) {
+                return $model->modelId
+                    ? $model->fileManager->getUrl()
+                    : "temp/{$model->name}";
+            }
         ];
     }
 

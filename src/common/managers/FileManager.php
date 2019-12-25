@@ -143,6 +143,37 @@ class FileManager
     }
 
     /**
+     * @return bool
+     */
+    public function removePresets()
+    {
+        $presets = Preset::find()->all();
+        $result = true;
+
+        foreach ($presets as $preset) {
+            $result = $this->removePreset($preset->name) && $result;
+        }
+
+        return $result;
+    }
+
+    /**
+     * @param string|null $name
+     * @return bool
+     */
+    public function removePreset(string $name = null)
+    {
+        $dir = $this->_file->getStorageDirName();
+        $file = Yii::getAlias("@storage/public/{$dir}/{$name}/{$this->_file->name}");
+
+        if (file_exists($file)) {
+            return unlink($file);
+        }
+
+        return false;
+    }
+
+    /**
      * @param string|null $presetName
      * @return string
      * @throws InvalidConfigException
