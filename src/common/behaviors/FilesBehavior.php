@@ -36,7 +36,7 @@ class FilesBehavior extends Behavior
         $owner = $this->owner;
 
 		return $owner->hasMany(File::class, ['modelId' => 'id'])
-            ->onCondition(['{{%files}}.modelClass' => $owner->modelClass()])
+            ->onCondition(['{{%files}}.modelClass' => $owner->getModelClass()])
 			->orderBy(['{{%files}}.position' => SORT_ASC]);
 	}
 
@@ -82,7 +82,7 @@ class FilesBehavior extends Behavior
 
             $model->load($file->attributes, '');
             $model->modelId = $owner->id;
-            $model->modelClass = $owner->modelClass();
+            $model->modelClass = $owner->getModelClass();
             $model->position = $index;
             $model->touch('createdAt');
 
