@@ -32,11 +32,6 @@ class Preset extends ActiveRecord implements ModelStatus
     const ACTION_THUMBNAIL_INSET = 'thumbnail_inset';
 
     /**
-     * @var FileManager
-     */
-    private $_fileManager;
-
-    /**
      * @inheritdoc
      */
     public static function tableName()

@@ -75,12 +75,12 @@ class FileManager
     }
 
     /**
-     * @param string $name
+     * @param string|null $name
      * @return bool|string
      * @throws InvalidConfigException
      * @throws \yii\base\Exception
      */
-    public function createPreset(string $name = '')
+    public function createPreset(string $name = null)
     {
         if ($name) {
             $preset = Preset::findOne(['name' => $name]);
@@ -88,7 +88,7 @@ class FileManager
             $preset = Preset::findOne(['isDefault' => true]);
         }
 
-        if (null === $preset) {
+        if (! $preset) {
             throw new InvalidConfigException("Preset not found");
         }
 
@@ -116,6 +116,7 @@ class FileManager
         $image = $image->save($newFile, ['quality' => $preset->quality]);
 //        $this->addWatermark($image, $newFile, $preset->watermark);
 
+        // TODO: test watermark
         if ($preset->watermark) {
             $imagine = Image::getImagine();
             $watermark = $imagine->open($preset->watermark);
@@ -139,6 +140,41 @@ class FileManager
         }
 
         return $newFile;
+    }
+
+    /**
+     * @param string|null $presetName
+     * @return string
+     * @throws InvalidConfigException
+     * @throws \yii\base\Exception
+     */
+    public function getUrl(string $presetName = null)
+    {
+        // TODO: need to add caching
+        if ($presetName) {
+            $preset = Preset::findOne(['name' => $presetName]);
+        } else {
+            $preset = Preset::findOne(['isDefault' => true]);
+        }
+
+        if (! $preset) {
+            throw new InvalidConfigException("Preset " .($presetName ? "name '$presetName'" : "'isDefault'"). " not found");
+        }
+
+        // TODO: add preset action override
+//        if($image['action'] && (!isset($preset['override']) || $preset['override'] === true)) {
+//            $preset['action'] = Image::$actions[$image['action']];
+//        }
+
+        $dir = $this->_file->getStorageDirName();
+        $origFile = $this->_file->getFullPath();
+        $presetFile = Yii::getAlias("@storage/public/{$dir}/{$preset->name}/{$this->_file->name}");
+
+        if (! file_exists($presetFile) && file_exists($origFile)) {
+            $this->createPreset($presetName);
+        }
+
+        return "storage/{$dir}/{$preset->name}/{$this->_file->name}";
     }
 
 
