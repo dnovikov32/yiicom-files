@@ -85,16 +85,16 @@ class ImageWidget extends Widget
 				$groupOpen = true;
 			}
 
-			$img = Html::img($image->fileManager->getUrl($this->preset), $options)."\n";
+			$img = Html::img('/' . $image->fileManager->getUrl($this->preset), $options)."\n";
 
 			if($this->after) {
 				$img .= $this->after;
 			}
 
 			if(isset($this->linkPreset)) {
-				$content .= Html::a($img, $image->fileManager->getUrl($this->linkPreset), $this->linkOptions)."\n";
+				$content .= Html::a($img, '/' . $image->fileManager->getUrl($this->linkPreset), $this->linkOptions)."\n";
 			} elseif(isset($this->linkOptions['href'])) {
-				$content .= Html::a($img, '/'.$this->linkOptions['href'], $this->linkOptions)."\n";
+				$content .= Html::a($img, '/' . $this->linkOptions['href'], $this->linkOptions)."\n";
 			} else {
 				$content .= $img;
 			}

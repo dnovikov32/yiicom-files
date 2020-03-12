@@ -49,6 +49,19 @@ class FilesBehavior extends Behavior
 	}
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+//    public function getFile()
+//    {
+//        /* @var ActiveRecord|ModelPageUrl $owner */
+//        $owner = $this->owner;
+//
+//        return $owner->hasMany(File::class, ['modelId' => 'id'])
+//            ->onCondition(['{{%files}}.modelClass' => $owner->getModelClass()])
+//            ->orderBy(['{{%files}}.position' => SORT_ASC]);
+//    }
+
+    /**
      * @return bool
      * @throws Exception
      * @throws \Throwable
