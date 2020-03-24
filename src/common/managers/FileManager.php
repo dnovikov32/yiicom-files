@@ -114,12 +114,10 @@ class FileManager
         }
 
         $image = $image->save($newFile, ['quality' => $preset->quality]);
-//        $this->addWatermark($image, $newFile, $preset->watermark);
 
-        // TODO: test watermark
         if ($preset->watermark) {
             $imagine = Image::getImagine();
-            $watermark = $imagine->open($preset->watermark);
+            $watermark = $imagine->open(Yii::getAlias("@storage/public/uploads/$preset->watermark"));
             $imageSize = $image->getSize();
             $imageWidth = $imageSize->getWidth();
             $imageHeight = $imageSize->getHeight();
@@ -127,7 +125,7 @@ class FileManager
             $markSize = $watermark->getSize();
 
             if ($markSize->getWidth() >= $imageWidth) {
-                $watermark = Image::resize($preset->watermark, $imageWidth - $imageWidth * 0.1, $imageHeight - $imageHeight * 0.1);
+                $watermark = Image::resize($watermark, $imageWidth - $imageWidth * 0.1, $imageHeight - $imageHeight * 0.1);
                 $markSize = $watermark->getSize();
             }
 

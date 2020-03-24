@@ -94,12 +94,19 @@
                             v-model="model.action"
                             :options="actions">
                         </b-form-select>
+                        <small tabindex="-1" class="form-text text-muted">
+                            Настройка типа изменение размера изображения<br>
+                            <b>Resize</b> - пропорционально изменяет размер изображения без обрезки<br>
+                            <b>Thumbnail Inset</b> - вписывает изображение в заданный размер без обрезки, центрирует и добавлят белый фон<br>
+                            <b>Thumbnail Outbound</b> - обрезает и вписывает изображение в заданный размер
+                        </small>
                     </b-form-group>
 
                     <b-form-group
                         label="Копирайт"
                         label-for="watermark"
                         label-cols-sm="2"
+                        description="Имя файла в папке storage/uploads"
                     >
                         <b-form-input
                             id="watermark"

@@ -129,6 +129,7 @@ class Preset extends ActiveRecord implements ModelStatus
             'width',
             'height',
             'quality',
+            'watermark',
             'action',
             'isDefault',
             'position',
