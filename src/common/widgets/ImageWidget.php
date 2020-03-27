@@ -75,7 +75,7 @@ class ImageWidget extends Widget
 			$options['title'] = $image->title ?? '';
 
 			if (isset($this->dataPreset)) {
-				$options['data-image'] = $image->fileManager->getUrl($this->dataPreset);
+				$options['data-image'] = '/' . $image->fileManager->getUrl($this->dataPreset);
 			}
 
 			// Открывающий тег группировки
