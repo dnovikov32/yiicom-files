@@ -2,17 +2,14 @@
 
 use yii\db\Migration;
 
-/**
- * Class m190403_085559_files_create_table_files_presets
- */
-class m190403_085559_files_create_table_files_presets extends Migration
+class m190403_085559_files_create_table_preset extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%files_presets}}', [
+        $this->createTable('{{%files_preset}}', [
             'id' => $this->primaryKey(),
             'title' => $this->string(),
             'name' => $this->string(64),
@@ -33,6 +30,6 @@ class m190403_085559_files_create_table_files_presets extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%files_presets}}');
+        $this->dropTable('{{%files_preset}}');
     }
 }

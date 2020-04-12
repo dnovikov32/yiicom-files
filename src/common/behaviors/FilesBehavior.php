@@ -5,7 +5,6 @@ namespace yiicom\files\common\behaviors;
 use yii\base\Behavior;
 use yii\base\Exception;
 use yiicom\common\models\ActiveRecord;
-use modules\pages\common\interfaces\ModelPageUrl;
 use yiicom\files\common\models\File;
 
 class FilesBehavior extends Behavior
@@ -32,12 +31,14 @@ class FilesBehavior extends Behavior
      */
 	public function getFiles()
 	{
-        /* @var ActiveRecord|ModelPageUrl $owner */
+        /* @var ActiveRecord $owner */
         $owner = $this->owner;
 
+        $filesFile = File::tableName();
+        
 		return $owner->hasMany(File::class, ['modelId' => 'id'])
-            ->onCondition(['{{%files}}.modelClass' => $owner->getModelClass()])
-			->orderBy(['{{%files}}.position' => SORT_ASC]);
+            ->onCondition(["$filesFile.modelClass" => $owner->getModelClass()])
+			->orderBy(["$filesFile.position" => SORT_ASC]);
 	}
 
     /**
@@ -69,7 +70,7 @@ class FilesBehavior extends Behavior
      */
 	public function afterSave()
 	{
-        /* @var ActiveRecord|ModelPageUrl $owner */
+        /* @var ActiveRecord $owner */
         $owner = $this->owner;
         $files = $owner->{$this->attribute};
 

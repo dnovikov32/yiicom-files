@@ -34,7 +34,7 @@
 ],
 ```
 
-Run migrations to create tables **files** and **files_presets**
+Run migrations to create tables **files_file** and **files_preset**
 ```bash
 php yii migrate
 ```

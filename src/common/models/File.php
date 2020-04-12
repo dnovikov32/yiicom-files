@@ -47,7 +47,7 @@ class File extends ActiveRecord implements ModelStatus
      */
     public static function tableName()
     {
-        return '{{%files}}';
+        return '{{%files_file}}';
     }
 
     /**

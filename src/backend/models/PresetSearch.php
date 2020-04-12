@@ -28,16 +28,18 @@ class PresetSearch extends Preset implements SearchModelInterface
      */
     protected function prepareFilters($query)
     {
+        $filesPreset = Preset::tableName();
+        
         $query->andFilterWhere([
-            '{{%files_presets}}.id' => $this->id,
-            '{{%files_presets}}.width' => $this->width,
-            '{{%files_presets}}.height' => $this->height,
-            '{{%files_presets}}.quality' => $this->quality,
+            "$filesPreset.id" => $this->id,
+            "$filesPreset.width" => $this->width,
+            "$filesPreset.height" => $this->height,
+            "$filesPreset.quality" => $this->quality,
         ]);
 
-        $query->andFilterWhere(['LIKE', '{{%files_presets}}.title', $this->title]);
-        $query->andFilterWhere(['LIKE', '{{%files_presets}}.name', $this->name]);
-        $query->andFilterWhere(['LIKE', '{{%files_presets}}.action', $this->action]);
-        $query->andFilterWhere(['LIKE', '{{%files_presets}}.watermark', $this->watermark]);
+        $query->andFilterWhere(['LIKE', "$filesPreset.title", $this->title]);
+        $query->andFilterWhere(['LIKE', "$filesPreset.name", $this->name]);
+        $query->andFilterWhere(['LIKE', "$filesPreset.action", $this->action]);
+        $query->andFilterWhere(['LIKE', "$filesPreset.watermark", $this->watermark]);
     }
 }

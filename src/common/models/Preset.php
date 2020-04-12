@@ -36,7 +36,7 @@ class Preset extends ActiveRecord implements ModelStatus
      */
     public static function tableName()
     {
-        return '{{%files_presets}}';
+        return '{{%files_preset}}';
     }
 
     /**

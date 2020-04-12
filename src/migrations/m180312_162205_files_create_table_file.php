@@ -2,17 +2,14 @@
 
 use yii\db\Migration;
 
-/**
- * Class m180312_162205_files_create_table
- */
-class m180312_162205_files_create_table extends Migration
+class m180312_162205_files_create_table_file extends Migration
 {
     /**
      * @inheritdoc
      */
     public function safeUp()
     {
-        $this->createTable('{{%files}}', [
+        $this->createTable('{{%files_file}}', [
             'id' => $this->primaryKey(),
             'modelClass' => $this->string(),
             'modelId' => $this->integer(),
@@ -36,6 +33,6 @@ class m180312_162205_files_create_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%files}}');
+        $this->dropTable('{{%files_file}}');
     }
 }
