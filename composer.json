@@ -3,8 +3,14 @@
   "description": "Yiicom files module",
   "keywords": ["yii2", "yiicom", "commerce", "files"],
   "type": "yii2-extension",
+  "authors": [
+    {
+      "name": "Dmitriy Novikov",
+      "email": "dn@t1000.su"
+    }
+  ],
   "require": {
-    "yiicom/yiicom": "dev-master",
+    "yiicom/yiicom": "^1.0.0",
     "yiisoft/yii2-imagine": "^2.2.0"
   },
   "autoload": {
